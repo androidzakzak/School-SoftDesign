@@ -1,6 +1,8 @@
 package com.softdesign.school.ui.activities;
 
 
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -13,7 +15,6 @@ import android.widget.TextView;
 
 import com.softdesign.school.R;
 import com.softdesign.school.utils.Lg;
-import com.softdesign.school.utils.SetTheme;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -25,11 +26,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     CheckBox mCheckBox;
     String mString;
     TextView mTextView;
+    public static final String TOOLBAR_COLOR_KEY = "toolbar_color";
+    public static final String STATUSBAR_COLOR_KEY = "statusbar_color";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        SetTheme.onActivityCreateSetTheme(this);  // Меняет тему при нажатие на кнопку
         setContentView(R.layout.activity_main);
 
         Lg.e(this.getLocalClassName(), "onCreate");
@@ -55,13 +57,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = v.getId();
         switch (id) {
             case R.id.btn_blue:
-                SetTheme.changeToTheme(this, SetTheme.THEME_DEFAULT);
+                setupColor(R.color.colorPrimary, R.color.colorPrimaryDark);
                 break;
             case R.id.btn_green:
-                SetTheme.changeToTheme(this, SetTheme.THEME_GREEN);
+                setupColor(R.color.green, R.color.green_dark);
                 break;
             case R.id.btn_red:
-                SetTheme.changeToTheme(this, SetTheme.THEME_RED);
+                setupColor(R.color.red, R.color.red_dark);
                 break;
             case R.id.cb_one:
                 mString = mEditText.getText().toString();
@@ -137,21 +139,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /**
-     * Сохраняет текст из переменой mString при повороте экрана и  выводит в лог onSaveInstanceState
+     * Сохраняет текст из переменой mString при повороте экрана и  выводит в лог onSaveInstanceState и сохраняет цвет тулбара и статус бара
      */
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         Lg.e(this.getLocalClassName(), "onSaveInstanceState");
         outState.putString("text", mString);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            outState.putInt(STATUSBAR_COLOR_KEY, getWindow().getStatusBarColor());
+        }
+        outState.putInt(TOOLBAR_COLOR_KEY, ((ColorDrawable) mActionBarToolbar.getBackground()).getColor());
     }
 
     /**
-     * Востанавливает данные для пременой mString и передает их в mTextView и выводит в лог onRestoreInstanceState
+     * Востанавливает данные для пременой mString и передает их в mTextView и выводит в лог onRestoreInstanceState и востанавливает цвет у тулбара и статус бара
      */
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         Lg.e(this.getLocalClassName(), "onRestoreInstanceState");
         mString = savedInstanceState.getString("text");
         mTextView.setText(mString);
+        setupColor(savedInstanceState.getInt(TOOLBAR_COLOR_KEY), savedInstanceState.getInt(STATUSBAR_COLOR_KEY));
+    }
+
+    /**
+     * Устанавливает цвет тулбара и статус бара
+     */
+    private void setupColor(int color, int color2) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            mActionBarToolbar.setBackgroundColor(this.getResources().getColor(color));
+            getWindow().setStatusBarColor(this.getResources().getColor(color2));
+        }
     }
 }
