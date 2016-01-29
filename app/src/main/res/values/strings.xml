@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">School-Softdesign</string>
+    <string name="activity.main.btn_blue">BLUE</string>
+    <string name="activity.main.btn_green">GREEN</string>
+    <string name="activity.main.btn_red">RED</string>
+    <string name="activity.main.text_hello">Привет!</string>
 </resources>
