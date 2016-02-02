@@ -8,4 +8,6 @@
     <color name="red">#FA2912</color>
     <color name="red_dark">#C61602</color>
     <color name="icon_color">#FFFFFF</color>
+    <color name="black_navigate">#1c1c1c</color>
+    <color name="red_navigate">#e31b25</color>
 </resources>

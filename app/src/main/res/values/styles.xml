@@ -2,9 +2,9 @@
 
 
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#1c1c1c</item>
-        <item name="colorPrimaryDark">#e31b25</item>
-        <item name="colorAccent">#e31b25</item>
+        <item name="colorPrimary">@color/black_navigate</item>
+        <item name="colorPrimaryDark">@color/red_navigate</item>
+        <item name="colorAccent">@color/red_navigate</item>
 
 
     </style>
@@ -13,6 +13,6 @@
         <!-- Set proper title size -->
         <item name="android:textSize">@dimen/abc_text_size_title_material_toolbar</item>
         <!-- Set title color -->
-        <item name="android:textColor">#e31b25</item>
+        <item name="android:textColor">@color/red_navigate</item>
     </style>
 </resources>
