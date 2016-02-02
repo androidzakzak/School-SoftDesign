@@ -17,17 +17,27 @@ public class Lg {
      * Реализовывает вывод логов
      */
     private static void printLog(int priority, String tag, String text) {
-        if (text.length() > LOGCAT_BUFFER_SIZE) {
-            String textLog = text;
-            while (textLog.length() > LOGCAT_BUFFER_SIZE) {
-                String textLogFinal = textLog.substring(0, LOGCAT_BUFFER_SIZE);
-                textLog = textLog.substring(LOGCAT_BUFFER_SIZE);
-                Log.println(priority, PREFIX + tag, textLogFinal);
+        if (shouldLog()) {
+            if (text.length() > LOGCAT_BUFFER_SIZE) {
+                String textLog = text;
+                while (textLog.length() > LOGCAT_BUFFER_SIZE) {
+                    String textLogFinal = textLog.substring(0, LOGCAT_BUFFER_SIZE);
+                    textLog = textLog.substring(LOGCAT_BUFFER_SIZE);
+                    Log.println(priority, PREFIX + tag, textLogFinal);
+                }
+                Log.println(priority, PREFIX + tag, textLog);
+            } else {
+                Log.println(priority, PREFIX + tag, text);
             }
-            Log.println(priority, PREFIX + tag, textLog);
-        } else {
-            Log.println(priority, PREFIX + tag, text);
         }
+    }
+
+    /**
+     * Проверяет включение логирования
+     */
+    private static boolean shouldLog() {
+        //return BuildConfig.IS_LOGCAT_LOGGER_ENABLED;
+        return true;
     }
 
     /**

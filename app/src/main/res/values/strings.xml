@@ -3,5 +3,13 @@
     <string name="activity.main.btn_blue">BLUE</string>
     <string name="activity.main.btn_green">GREEN</string>
     <string name="activity.main.btn_red">RED</string>
-    <string name="activity.main.text_hello">Привет!</string>
+    <string name="activity.main.text_hello">Hello world</string>
+    <string name="drawer.profile">Профиль</string>
+    <string name="drawer.contacts">Контакты</string>
+    <string name="drawer.team">Команда</string>
+    <string name="drawer.tasks">Задачи</string>
+    <string name="drawer.setting">Настройки</string>
+    <string name="main.navigation.email">androidzakzak@gmail.com</string>
+    <string name="main.navigation.name">Алексей Лаухин</string>
+    <string name="main.navigaton.score">19</string>
 </resources>
