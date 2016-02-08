@@ -1,0 +1,95 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/nav_header_height"
+    android:fitsSystemWindows="true"
+    tools:ignore="MissingPrefix">
+
+    <ImageView
+        android:id="@+id/user_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/user_background_layout_height"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/clear"
+        android:scaleType="fitXY"
+        android:src="@drawable/user_background" />
+
+    <br.liveo.ui.RoundedImageView
+        android:id="@+id/user_photo"
+        android:layout_width="@dimen/user_photo_layout_width"
+        android:layout_height="@dimen/user_photo_layout_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="@dimen/user_photo_layout_marginLeft"
+        android:layout_marginStart="@dimen/user_photo_layout_marginLeft"
+        android:layout_marginTop="@dimen/user_photo_layout_marginTop"
+        android:src="@drawable/my_photo" />
+
+    <br.liveo.ui.RoundedImageView
+        android:id="@+id/user_rating"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/user_photo"
+        android:layout_marginEnd="@dimen/main_margin"
+        android:layout_marginRight="@dimen/main_margin"
+        android:src="@drawable/rating_fon" />
+
+
+    <TextView
+        android:id="@+id/tv_rating"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/user_rating"
+        android:layout_alignEnd="@+id/user_rating"
+        android:layout_alignLeft="@+id/user_rating"
+        android:layout_alignRight="@+id/user_rating"
+        android:layout_alignStart="@+id/user_rating"
+        android:layout_alignTop="@+id/user_rating"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:layout_marginTop="3dp"
+        android:text="@string/main.navigaton.score"
+        android:textSize="25dp" />
+
+    <LinearLayout
+        android:id="@+id/user_data"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/user_data_layout_height"
+        android:layout_alignBottom="@+id/user_background"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="@dimen/user_data_layout_marginBottom"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/user_name"
+            fontPath="fonts/Roboto-Medium.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/user_name_layout_marginLeft"
+            android:layout_marginStart="@dimen/user_name_layout_marginLeft"
+            android:text="@string/main.navigation.name"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/user_name_textSize" />
+
+        <TextView
+            android:id="@+id/user_email"
+            fontPath="fonts/Roboto-Regular.ttf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/user_email_layout_marginLeft"
+            android:layout_marginStart="@dimen/user_email_layout_marginLeft"
+            android:text="@string/main.navigation.email"
+            android:textColor="#FFFFFF"
+            android:textSize="@dimen/user_email_textSize" />
+    </LinearLayout>
+
+</RelativeLayout>
