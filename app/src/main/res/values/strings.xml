@@ -11,5 +11,21 @@
     <string name="drawer.setting">Настройки</string>
     <string name="main.navigation.email">androidzakzak@gmail.com</string>
     <string name="main.navigation.name">Алексей Лаухин</string>
-    <string name="main.navigaton.score">19</string>
+    <string name="main.navigaton.score">20</string>
+    <string name="roboto.regular">sans-serif</string>
+    <string name="roboto.light">sans-serif-light</string>
+    <string name="roboto.condensed">sans-serif-condensed</string>
+    <string name="roboto.thin">sans-serif-thin</string>
+    <string name="roboto.medium">sans-serif-medium</string>
+    <string name="fragment.profile.number">+7(937)803-90-46</string>
+    <string name="fragment.profile.phone">Мобильный</string>
+    <string name="fragment.profile.gmail">androidzakzak@gmail.com</string>
+    <string name="fragment.profile.mail">E-mail</string>
+    <string name="fragment.profile.vk_id">http://vk.com/id267910373</string>
+    <string name="fragment.profile.vk">VK</string>
+    <string name="fragment.profile.github_id">https://github.com/androidzakzak/School-Softdesign</string>
+    <string name="fragment.profile.github">GitHub</string>
+    <string name="fragment.profile.info">Люблю смотреть сериалы =)</string>
+    <string name="fragment.profile.information">О себе</string>
+    <string name="list.user.text">Text</string>
 </resources>

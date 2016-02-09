@@ -1,16 +1,21 @@
 package com.softdesign.school.ui.activities;
 
 
-import android.graphics.Color;
+import android.os.Bundle;
+import android.os.Handler;
+import android.support.design.widget.AppBarLayout;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.MenuItem;
+
 
 import com.softdesign.school.R;
 import com.softdesign.school.ui.fragments.ContactsFragment;
@@ -26,22 +31,53 @@ public class MainActivity extends AppCompatActivity {
     NavigationView mNavigationView;
     DrawerLayout mDrawerLayout;
     Fragment mFragment;
+    private CollapsingToolbarLayout mCollapsingLayout;
+    private AppBarLayout mAppBarLayout;
+    public AppBarLayout.LayoutParams params = null;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Lg.e(this.getLocalClassName(), "onCreate");
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer);
         mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
         mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
+        mAppBarLayout = (AppBarLayout) findViewById(R.id.MyAppbar);
+        mCollapsingLayout = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
+        mCollapsingLayout.setExpandedTitleGravity(Gravity.BOTTOM);
+        mCollapsingLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.red_navigate));
+        mCollapsingLayout.setExpandedTitleColor(getResources().getColor(R.color.red_navigate));
+
         setupToolbar();
         setupDrawer();
+
         if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_conteiner, new ProfileFragment()).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, new ProfileFragment()).commit();
         }
     }
 
+    /**
+     * Скрывает или открывает колапсингтулбар
+     */
+    public void appBarLock(boolean collapse, String title) {
+        mCollapsingLayout.setTitle(title);
+        params = (AppBarLayout.LayoutParams) mCollapsingLayout.getLayoutParams();
+        params.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL | AppBarLayout.LayoutParams.SCROLL_FLAG_EXIT_UNTIL_COLLAPSED | AppBarLayout.LayoutParams.SCROLL_FLAG_SNAP);
+        mCollapsingLayout.setLayoutParams(params);
+        if (collapse) {
+            mAppBarLayout.setExpanded(false);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    params.setScrollFlags(0);
+                    mCollapsingLayout.setLayoutParams(params);
+                }
+            }, 0);
+        } else mAppBarLayout.setExpanded(true);
+    }
 
     /**
      * Инициализирует тулбар
@@ -49,10 +85,8 @@ public class MainActivity extends AppCompatActivity {
     private void setupToolbar() {
         setSupportActionBar(mActionBarToolbar);
         ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-        }
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_24dp);
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     /**
@@ -80,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                         break;
                 }
                 if (mFragment != null) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_conteiner, mFragment).addToBackStack(null).commit();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainer, mFragment).addToBackStack(null).commit();
                 }
                 mDrawerLayout.closeDrawers();
                 return false;
