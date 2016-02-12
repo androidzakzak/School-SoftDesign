@@ -54,7 +54,8 @@
         android:layout_marginRight="3dp"
         android:layout_marginTop="3dp"
         android:text="@string/main.navigaton.score"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:textColor="@color/red_navigate"/>
 
     <LinearLayout
         android:id="@+id/user_data"
@@ -77,7 +78,7 @@
             android:layout_marginLeft="@dimen/user_name_layout_marginLeft"
             android:layout_marginStart="@dimen/user_name_layout_marginLeft"
             android:text="@string/main.navigation.name"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/red_navigate"
             android:textSize="@dimen/user_name_textSize" />
 
         <TextView
@@ -88,7 +89,7 @@
             android:layout_marginLeft="@dimen/user_email_layout_marginLeft"
             android:layout_marginStart="@dimen/user_email_layout_marginLeft"
             android:text="@string/main.navigation.email"
-            android:textColor="#FFFFFF"
+            android:textColor="@color/red_navigate"
             android:textSize="@dimen/user_email_textSize" />
     </LinearLayout>
 
