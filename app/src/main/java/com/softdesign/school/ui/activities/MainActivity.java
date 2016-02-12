@@ -25,28 +25,32 @@ import com.softdesign.school.ui.fragments.TasksFragment;
 import com.softdesign.school.ui.fragments.TeamFragment;
 import com.softdesign.school.utils.Lg;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 
 public class MainActivity extends AppCompatActivity {
+    @Bind(R.id.toolbar_actionbar)
     Toolbar mActionBarToolbar;
+    @Bind(R.id.navigation_view)
     NavigationView mNavigationView;
+    @Bind(R.id.navigation_drawer)
     DrawerLayout mDrawerLayout;
-    Fragment mFragment;
-    private CollapsingToolbarLayout mCollapsingLayout;
-    private AppBarLayout mAppBarLayout;
+    @Bind(R.id.MyAppbar)
+    AppBarLayout mAppBarLayout;
+    @Bind(R.id.collapse_toolbar)
+    CollapsingToolbarLayout mCollapsingLayout;
     public AppBarLayout.LayoutParams params = null;
-
+    Fragment mFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Lg.e(this.getLocalClassName(), "onCreate");
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer);
-        mNavigationView = (NavigationView) findViewById(R.id.navigation_view);
-        mActionBarToolbar = (Toolbar) findViewById(R.id.toolbar_actionbar);
-        mAppBarLayout = (AppBarLayout) findViewById(R.id.MyAppbar);
-        mCollapsingLayout = (CollapsingToolbarLayout) findViewById(R.id.collapse_toolbar);
+
         mCollapsingLayout.setExpandedTitleGravity(Gravity.BOTTOM);
         mCollapsingLayout.setCollapsedTitleTextColor(getResources().getColor(R.color.red_navigate));
         mCollapsingLayout.setExpandedTitleColor(getResources().getColor(R.color.red_navigate));
